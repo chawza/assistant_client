@@ -1,0 +1,9 @@
+[
+  {
+    "label": "Debug Flutter App",
+    "adapter": "Dart", // DO NOT EDIT
+    "type": "flutter",
+    "program": "lib/main.dart",
+    "args": ["--web-port=9090"]
+  }
+]
