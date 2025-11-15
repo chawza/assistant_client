@@ -12,6 +12,8 @@ class _HomePageState extends State<HomePage> {
     const AssistantMessage("Hello! How can I help you today?"),
   ];
   final TextEditingController _textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  final FocusNode _focusNode = FocusNode();
 
   void _sendMessage(String message) {
     if (message.trim().isEmpty) {
@@ -25,6 +27,7 @@ class _HomePageState extends State<HomePage> {
       _messages.add(AssistantMessage("You said: $message"));
     });
     _textController.clear();
+    _scrollToBottom();
   }
 
   @override
@@ -37,6 +40,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Expanded(
             child: ListView.builder(
+              controller: _scrollController,
               reverse: false, // Set to true if you want messages to appear from the bottom up
               padding: const EdgeInsets.all(8.0),
               itemCount: _messages.length,
@@ -60,7 +64,11 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: TextField(
               controller: _textController,
-              onSubmitted: _sendMessage,
+              focusNode: _focusNode,
+              onSubmitted: (value) {
+                _sendMessage(value);
+                _focusNode.requestFocus();
+              },
               decoration:
                   const InputDecoration.collapsed(hintText: "Send a message"),
             ),
@@ -77,7 +85,21 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _textController.dispose();
+    _scrollController.dispose();
+    _focusNode.dispose();
     super.dispose();
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
   }
 }
 
