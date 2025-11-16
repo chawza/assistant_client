@@ -27,22 +27,24 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> logoutAttempt() async {
     session?.clearSession();
-    Navigator.pushNamed(context, '/auth/login');
+    Navigator.pushNamedAndRemoveUntil(context, '/auth/login', (route) => false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Profile')),
-      body: Expanded(
+      body: Padding(
+        padding: EdgeInsets.all(10.0),
         child: Column(
+          spacing: 10.0,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [Text('Email: $_email')],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 FilledButton(onPressed: logoutAttempt, child: Text('Logout')),
               ],
