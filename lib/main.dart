@@ -1,3 +1,4 @@
+import 'package:assistant_client/pages/auth_page.dart';
 import 'package:assistant_client/pages/home.dart';
 import 'package:flutter/material.dart';
 
@@ -31,9 +32,10 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomePage(),
+      home: AuthPage(),
       routes: {
         '/home': (context) => HomePage(),
+        '/auth': (context) => AuthPage(),
       },
     );
   }
