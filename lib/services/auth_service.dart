@@ -9,7 +9,7 @@ class AuthService {
 
   AuthService(this.baseUrl) : loginUrl = '$baseUrl/api/auth/login';
 
-  Future<String> login(String email, String password) async {
+  Future<(String, Map<String, dynamic>)> login(String email, String password) async {
     final response = await http.post(
       Uri.parse(loginUrl),
       headers: {'Content-Type': 'application/json; charset=utf-8'},
@@ -29,6 +29,8 @@ class AuthService {
     }
 
     var payload = jsonDecode(response.body) as Map<String, dynamic>;
-    return payload['token'];
+    var token = payload['token'] as String;
+    var user = payload['user'] as Map<String, dynamic>;
+    return (token, user);
   }
 }

@@ -25,12 +25,13 @@ class _AuthPageState extends State<AuthPage> {
 
     var service = AuthService('http://localhost:8000');
     try {
-      var token = await service.login(
+      var result = await service.login(
         emailController.value.text,
         passwordController.value.text,
       );
       var session = await SessionStorage.get();
-      session.saveToken(token);
+      session.saveToken(result.$1);
+      session.updateUserData(result.$2);
       Navigator.pushNamed(context, '/home');
     } on AuthError catch (e) {
       ScaffoldMessenger.of(
