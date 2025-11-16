@@ -36,6 +36,32 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Assistant Client"),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Profile'),
+              onTap: () {
+                Navigator.pushNamed(context, '/auth/profile');
+              },
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
