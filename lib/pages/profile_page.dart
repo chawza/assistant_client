@@ -46,7 +46,22 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                FilledButton(onPressed: logoutAttempt, child: Text('Logout')),
+                const Text('Configuration'),
+                FilledButton(
+                  child: const Text('Edit'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/models/configuration');
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                FilledButton(
+                  onPressed: logoutAttempt,
+                  child: const Text('Logout'),
+                ),
               ],
             ),
           ],
