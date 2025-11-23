@@ -1,5 +1,6 @@
 import 'package:assistant_client/pages/auth_page.dart';
 import 'package:assistant_client/pages/home.dart';
+import 'package:assistant_client/pages/model_configuration_page.dart';
 import 'package:assistant_client/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/auth/login': (context) => AuthPage(),
         '/auth/profile': (context) => ProfilePage(),
+        '/models/configuration': (context) => ModelConfigurationPage(),
       },
     );
   }
