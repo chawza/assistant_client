@@ -31,11 +31,8 @@ class _ModelConfigurationPageState extends State<ModelConfigurationPage> {
     modelsController.text = modelConfig.model;
     apiKeyUrlController.text = modelConfig.apiKey;
 
-    print(modelConfig);
-
     setState(() {
       _disableUpdateButton = false;
-      print(_disableUpdateButton);
     });
   }
 
